@@ -1,11 +1,14 @@
+import { memo } from "react";
 import { GenreResponseProps } from "../App";
 import { Button } from "./Button";
+import '../styles/sidebar.scss';
+
 interface SideBarProps {
   genres: GenreResponseProps[];
   selectedGenreId: number;
   onClickButton: (id: number) => void;
 }
-export function SideBar({genres, selectedGenreId, onClickButton}: SideBarProps) {
+function SideBarComponent({genres, selectedGenreId, onClickButton}: SideBarProps) {
   
   return (
     <nav className="sidebar">
@@ -22,7 +25,10 @@ export function SideBar({genres, selectedGenreId, onClickButton}: SideBarProps) 
             />
           ))}
         </div>
-
       </nav>
   )
 }
+
+export const SideBar = memo(SideBarComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.genres, nextProps.genres) && prevProps.selectedGenreId === nextProps.selectedGenreId;
+});

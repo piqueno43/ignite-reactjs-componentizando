@@ -1,12 +1,13 @@
-import { GenreResponseProps, MovieProps } from "../App";
+import { memo } from "react";
+import { MovieProps } from "../App";
 import { MovieCard } from "./MovieCard";
-
+import '../styles/content.scss';
 interface ContentProps {
   movies: MovieProps[];
   title: string;
 }
 
-export function Content({ title, movies }:ContentProps) {
+function ContentComponent({ title, movies }:ContentProps) {
   return (
     <div className="container">
         <header>
@@ -23,3 +24,7 @@ export function Content({ title, movies }:ContentProps) {
       </div>
   )
 }
+
+export const Content = memo(ContentComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.movies, nextProps.movies) && prevProps.title === nextProps.title;
+});

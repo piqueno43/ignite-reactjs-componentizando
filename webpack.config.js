@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
@@ -17,7 +17,8 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
-    hot: true,
+    port: 3000,
+    hot: true
   },
   plugins: [
     isDevelopment && new ReactRefreshWebpackPlugin(),
@@ -48,10 +49,10 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
-            loader: 'file-loader',
-          },
-        ],
-      },
+            loader: 'file-loader'
+          }
+        ]
+      }
     ]
   }
 }
